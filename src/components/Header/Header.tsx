@@ -1,8 +1,14 @@
-import React from 'react'
-
+import styles from './Header.module.css';
+import rocketLogo from '/rocket.svg';
 
 export default function Header() {
   return (
-    <div>Header</div>
+    <header className={styles.header}>
+      <img src={rocketLogo} alt="rocket logo" />
+      <div>
+        <h1 className={styles.blueText}>to</h1>
+        <h1 className={styles.purpleText}>do</h1>
+      </div>
+    </header>
   )
 }
