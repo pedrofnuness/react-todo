@@ -1,0 +1,47 @@
+.formContainer {
+  margin-top: calc(0px - 1.646rem);
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.newTaskInput {
+  background: var(--gray-500);
+  border: 1px solid var(--gray-700);
+  border-radius: 0.5rem;
+  color: var(--white);
+
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+}
+
+.newTaskInput:focus {
+  outline: transparent;
+  border: 1px solid var(--purple-dark);
+}
+
+button {
+  background: var(--blue-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.1s;
+}
+
+button:hover {
+  background: var(--blue);
+}
+
+button:disabled {
+  background: var(--gray-300);
+  cursor: not-allowed;
+}
