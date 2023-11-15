@@ -5,10 +5,8 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <img src={rocketLogo} alt="rocket logo" />
-      <div>
-        <h1 className={styles.blueText}>to</h1>
-        <h1 className={styles.purpleText}>do</h1>
-      </div>
+      <h1 className={styles.blueText}>to</h1>
+      <h1 className={styles.purpleText}>do</h1>
     </header>
   )
 }
