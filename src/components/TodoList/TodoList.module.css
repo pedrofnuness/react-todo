@@ -1,0 +1,31 @@
+.container {
+  width: 100%;
+  margin-top: 4rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+header p {
+  font-size: var(--font-medium);
+  font-weight: 700;
+}
+
+header p span {
+  background: var(--gray-400);
+  color: var(--gray-200);
+  font-weight: 700;
+  padding: 0.125rem 0.5rem;
+  border-radius: 1rem;
+
+}
+
+.tasksCreated {
+  color: var(--blue);
+}
+
+.tasksCompleted {
+  color: var(--purple);
+}
