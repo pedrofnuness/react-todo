@@ -1,9 +1,9 @@
-import React, { ChangeEvent, FormEventHandler, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './NewTaskForm.module.css';
 import { FiPlusCircle } from "react-icons/fi";
 
 type FormProps = {
-  onSubmit: FormEventHandler<HTMLFormElement>;
+  onSubmit: (inputValue: string) => void;
 }
 
 export function NewTaskForm({ onSubmit }: FormProps) {
@@ -13,10 +13,17 @@ export function NewTaskForm({ onSubmit }: FormProps) {
     setInputValue(event.target.value);
   }
 
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    onSubmit(inputValue);
+    setInputValue("");
+  };
+
   return (
-    <form onSubmit={onSubmit} className={styles.formContainer}>
+    <form onSubmit={handleSubmit} className={styles.formContainer}>
       <input 
         type="text" 
+        name="task-input"
         value={inputValue}
         placeholder='Add new Task'
         onChange={handleChangeInputValue}
@@ -25,7 +32,7 @@ export function NewTaskForm({ onSubmit }: FormProps) {
 
       <button
         type="submit"
-        name="Add task button" 
+        name="add-task-button" 
         aria-label="Add task button"
         disabled={!inputValue}
       >
