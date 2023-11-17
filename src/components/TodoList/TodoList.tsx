@@ -1,10 +1,9 @@
 import React from 'react';
-import { LuClipboardList } from "react-icons/lu";
+import { LuClipboardList, LuTrash2 } from "react-icons/lu";
 import styles from './TodoList.module.css';
 
-
 type Props = {
-  taskList: string[]
+  taskList: TaskProps[];
 }
 
 export default function TodoList({ taskList }: Props) {
@@ -19,14 +18,29 @@ export default function TodoList({ taskList }: Props) {
         </p>
       </header>
 
-      <div className={styles.emptyList}>
-        <LuClipboardList size={56}/>
-        <p>
-          <strong>You don't have tasks registered yet</strong>
-          <br />
-          Create tasks and organize your to-do items
-        </p>
-      </div>
+      {taskList.length ? (
+        taskList.map(task => (
+          <div className={styles.taskContainer}>
+            <input
+              type="checkbox"
+              name="task-checkbox"
+              id={`checkbox-task-${task.id}`}
+              className={styles.checkbox}
+            ></input>
+            <p>{task.content}</p>
+            <LuTrash2 title="Delete task"/>
+          </div>
+        ))
+      ) : (
+        <div className={styles.emptyList}>
+          <LuClipboardList size={56}/>
+          <p>
+            <strong>You don't have tasks registered yet</strong>
+            <br />
+            Create tasks and organize your to-do items
+          </p>
+        </div>
+      )}
     </section>
   )
 }
