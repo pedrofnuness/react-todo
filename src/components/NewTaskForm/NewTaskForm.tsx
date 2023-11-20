@@ -35,6 +35,7 @@ export function NewTaskForm({ onSubmit }: FormProps) {
         name="add-task-button" 
         aria-label="Add task button"
         disabled={!inputValue}
+        className={styles.newTaskButton}
       >
         Add
         <FiPlusCircle size={16}/>

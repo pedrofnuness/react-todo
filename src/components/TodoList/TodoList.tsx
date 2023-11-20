@@ -4,19 +4,29 @@ import styles from './TodoList.module.css';
 
 type Props = {
   taskList: TaskProps[];
+  deleteTaskFromList: (taskId: string) => void;
 }
 
-export default function TodoList({ taskList }: Props) {
+export default function TodoList({ taskList, deleteTaskFromList }: Props) {
   const [completedTasks, setCompletedTasks] = useState<string[]>([]);
+
+  const removeFromCompletedTasks = (taskIdToRemove: string) => {
+    setCompletedTasks(prevState => prevState.filter(taskId => taskId !== taskIdToRemove))
+  }
 
   const handleClickOnTask = (taskId: string) => {
     const taskAlreadyCompleted = !!completedTasks.find(task => task === taskId);
 
     if (taskAlreadyCompleted) {
-      setCompletedTasks(prevState => prevState.filter(task => task !== taskId))
+      removeFromCompletedTasks(taskId)
     } else {
       setCompletedTasks(prevState => [...prevState, taskId]);
     }
+  };
+
+  const handleDeleteTask = (taskIdtoDelete: string) => {
+    removeFromCompletedTasks(taskIdtoDelete);
+    deleteTaskFromList(taskIdtoDelete);
   };
 
   return (
@@ -41,7 +51,13 @@ export default function TodoList({ taskList }: Props) {
               onClick={() => handleClickOnTask(task.id)}
             />
             <p>{task.content}</p>
-            <LuTrash2 title="Delete task"/>
+            <button
+              title="Delete task"
+              className={styles.deleteTaskButton}
+              onClick={() => handleDeleteTask(task.id)}
+            >
+              <LuTrash2 size={16}/>
+            </button>
           </div>
         ))
       ) : (

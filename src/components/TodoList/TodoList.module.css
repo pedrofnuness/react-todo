@@ -105,6 +105,12 @@
   font-size: var(--font-medium);
 }
 
+.deleteTaskButton {
+  border: none;
+  background: none;
+  display: flex;
+}
+
 .taskContainer svg {
   color: var(--gray-300);
   cursor: pointer;

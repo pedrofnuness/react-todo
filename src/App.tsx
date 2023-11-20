@@ -30,8 +30,11 @@ function App() {
       id: uuidv4(),
       content: inputValue
     };
-
     setTaskList((prevState) => [...prevState, newTask])
+  };
+
+  const handleDeleteTask = (taskIdToDelete: string) => {
+    setTaskList(prevState => prevState.filter(task => task.id !== taskIdToDelete));
   };
 
   return (
@@ -40,7 +43,7 @@ function App() {
 
       <main className={styles.content}>
         <NewTaskForm onSubmit={handleCreateTask}/>
-        <TodoList taskList={taskList}/>
+        <TodoList taskList={taskList} deleteTaskFromList={handleDeleteTask} />
       </main>
     </>
   )
