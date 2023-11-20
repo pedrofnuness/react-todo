@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LuClipboardList, LuTrash2 } from "react-icons/lu";
 import styles from './TodoList.module.css';
 
@@ -7,6 +7,18 @@ type Props = {
 }
 
 export default function TodoList({ taskList }: Props) {
+  const [completedTasks, setCompletedTasks] = useState<string[]>([]);
+
+  const handleClickOnTask = (taskId: string) => {
+    const taskAlreadyCompleted = !!completedTasks.find(task => task === taskId);
+    if (taskAlreadyCompleted) {
+      const tasksWithoutSelected = completedTasks.filter(task => task !== taskId)
+      setCompletedTasks(tasksWithoutSelected)
+    } else {
+      setCompletedTasks(prevState => [...prevState, taskId]);
+    }
+  };
+
   return (
     <section className={styles.container}>
       <header className={styles.listHeader}>
@@ -14,7 +26,7 @@ export default function TodoList({ taskList }: Props) {
           Created tasks <span>{taskList.length}</span>
         </p>
         <p className={styles.tasksCompleted}>
-          Completed <span>0</span>
+          Completed <span>{completedTasks.length} of {taskList.length}</span>
         </p>
       </header>
 
@@ -26,7 +38,8 @@ export default function TodoList({ taskList }: Props) {
               name="task-checkbox"
               id={`checkbox-task-${task.id}`}
               className={styles.checkbox}
-            ></input>
+              onClick={() => handleClickOnTask(task.id)}
+            />
             <p>{task.content}</p>
             <LuTrash2 title="Delete task"/>
           </div>
