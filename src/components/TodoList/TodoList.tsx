@@ -11,9 +11,9 @@ export default function TodoList({ taskList }: Props) {
 
   const handleClickOnTask = (taskId: string) => {
     const taskAlreadyCompleted = !!completedTasks.find(task => task === taskId);
+
     if (taskAlreadyCompleted) {
-      const tasksWithoutSelected = completedTasks.filter(task => task !== taskId)
-      setCompletedTasks(tasksWithoutSelected)
+      setCompletedTasks(prevState => prevState.filter(task => task !== taskId))
     } else {
       setCompletedTasks(prevState => [...prevState, taskId]);
     }
@@ -32,7 +32,7 @@ export default function TodoList({ taskList }: Props) {
 
       {taskList.length ? (
         taskList.map(task => (
-          <div className={styles.taskContainer}>
+          <div key={task.id} className={styles.taskContainer}>
             <input
               type="checkbox"
               name="task-checkbox"
