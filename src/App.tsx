@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
-
+import { v4 as uuidv4 } from 'uuid';
 import Header from './components/Header/Header'
 import { NewTaskForm } from './components/NewTaskForm/NewTaskForm.tsx'
 import styles from './App.module.css';
 import './global.css'
 import TodoList from './components/TodoList/TodoList.tsx';
 
-
 const taskMockArray = [
   {
-    id: '1',
+    id: uuidv4(),
     content: 'Write the documentation'
   },
   {
-    id: '2',
+    id: uuidv4(),
     content: 'Review open pull requests'
   },
   {
-    id: '3',
+    id: uuidv4(),
     content: 'Write unit tests'
   },
-]
+];
 
 
 function App() {
   const [taskList, setTaskList] = useState<TaskProps[]>(taskMockArray);
   
   const handleCreateTask = (inputValue: string) => {
-    setTaskList((prevState) => [...prevState, inputValue])
+    const newTask: TaskProps = {
+      id: uuidv4(),
+      content: inputValue
+    };
+
+    setTaskList((prevState) => [...prevState, newTask])
   };
 
   return (
