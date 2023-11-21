@@ -99,10 +99,17 @@
   border: none;
 }
 
-.taskContainer p {
+.defaultTaskText {
   flex: 1;
   color: var(--gray-100);
   font-size: var(--font-medium);
+}
+
+.completedTaskText {
+  flex: 1;
+  color: var(--gray-300);
+  font-size: var(--font-medium);
+  text-decoration-line: line-through;
 }
 
 .deleteTaskButton {

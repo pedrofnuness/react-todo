@@ -14,7 +14,7 @@ export default function TodoList({ taskList, deleteTaskFromList }: Props) {
     setCompletedTasks(prevState => prevState.filter(taskId => taskId !== taskIdToRemove))
   }
 
-  const handleClickOnTask = (taskId: string) => {
+  const handleClickOnTask = (taskId: string) => { //TODO: Risk task when select as completed
     const taskAlreadyCompleted = !!completedTasks.find(task => task === taskId);
 
     if (taskAlreadyCompleted) {
@@ -50,7 +50,13 @@ export default function TodoList({ taskList, deleteTaskFromList }: Props) {
               className={styles.checkbox}
               onClick={() => handleClickOnTask(task.id)}
             />
-            <p>{task.content}</p>
+            <p 
+              className={
+                completedTasks.includes(task.id) ? styles.completedTaskText : styles.defaultTaskText
+              }
+            >
+              {task.content}
+            </p>
             <button
               title="Delete task"
               className={styles.deleteTaskButton}
